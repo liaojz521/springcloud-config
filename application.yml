@@ -1,0 +1,44 @@
+server:
+  port: 8001
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.springcloud.demo
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml
+
+##配置 spring boot 监控端点的访问权限
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+spring:
+  application:
+    name: provider-dept
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/clouddb01?characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: root
+    password: 123456
+    dbpc:
+      min-idle: 5
+      initial: 5
+      max-total: 5
+      max-wait-millis: 200
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: provider-dept-8001
+    prefer-ip-address: true
+#添加eureka 监控中info信息的展示
+info:
+  app.name: com-springcloud
+  company.name: www.baidu.com
+  build:
+    artifactId: $project.artifactId$
+    version: $project.version$
