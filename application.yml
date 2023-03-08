@@ -1,7 +1,6 @@
 spring:
   profiles:
-    active:
-     - dev:
+    active: dev
 ---  #分隔符 同一个文件配置不同的环境
 spring:
   profiles: dev
